@@ -17,7 +17,6 @@
 #define Deque_DEFINE(T)  \
 struct Deque_##T; \
 struct Deque_##T##_Iterator; \
-struct Deque_##T; \
 typedef bool (*less_func_##T)(const T &, const T &); \
 \
 int Deque_##T##_size(Deque_##T * c); \
