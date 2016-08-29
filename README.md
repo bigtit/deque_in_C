@@ -52,35 +52,35 @@ I guess the time costs of overheads in allocation operations is fairly small com
 ------
 
 **The result of `diff my_output corrent_output`:**
-> 108c108
-> < 579 allocations totalling 128666200 bytes
-> \---
-> \> 60 allocations totalling 142680112 bytes
+> 108c108  
+> < 579 allocations totalling 128666200 bytes  
+> \---  
+> \> 60 allocations totalling 142680112 bytes  
 
 **The result of valgrind:**
->  valgrind ./test --leak-check=full
->
->  ==2681== Memcheck, a memory error detector
->  ==2681== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
->  ==2681== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
->  ==2681== Command: ./test --leak-check=full
->  ==2681==
->  ==2681==
->  ==2681== HEAP SUMMARY:
->  ==2681==     in use at exit: 72,704 bytes in 1 blocks
->  ==2681==   total heap usage: 579 allocs, 578 frees, 128,666,200 bytes allocated
->  ==2681==
->  ==2681== LEAK SUMMARY:
->  ==2681==    definitely lost: 0 bytes in 0 blocks
->  ==2681==    indirectly lost: 0 bytes in 0 blocks
->  ==2681==      possibly lost: 0 bytes in 0 blocks
->  ==2681==    still reachable: 72,704 bytes in 1 blocks
->  ==2681==         suppressed: 0 bytes in 0 blocks
->  ==2681== Rerun with --leak-check=full to see details of leaked memory
->  ==2681==
->  ==2681== For counts of detected and suppressed errors, rerun with: -v
->  ==2681== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+>  valgrind ./test --leak-check=full  
+>  
+>  ==2681== Memcheck, a memory error detector  
+>  ==2681== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.  
+>  ==2681== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info  
+>  ==2681== Command: ./test --leak-check=full  
+>  ==2681==  
+>  ==2681==  
+>  ==2681== HEAP SUMMARY:  
+>  ==2681==     in use at exit: 72,704 bytes in 1 blocks  
+>  ==2681==   total heap usage: 579 allocs, 578 frees, 128,666,200 bytes allocated  
+>  ==2681==  
+>  ==2681== LEAK SUMMARY:  
+>  ==2681==    definitely lost: 0 bytes in 0 blocks  
+>  ==2681==    indirectly lost: 0 bytes in 0 blocks  
+>  ==2681==      possibly lost: 0 bytes in 0 blocks  
+>  ==2681==    still reachable: 72,704 bytes in 1 blocks  
+>  ==2681==         suppressed: 0 bytes in 0 blocks  
+>  ==2681== Rerun with --leak-check=full to see details of leaked memory  
+>  ==2681==  
+>  ==2681== For counts of detected and suppressed errors, rerun with: -v  
+>  ==2681== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)  
 
 **Build environment:**
-> 4.7.2-1-ARCH x86_64 GNU/Linux
+> 4.7.2-1-ARCH x86_64 GNU/Linux  
 > gcc version 6.1.1 20160802 (GCC)108c108
