@@ -48,7 +48,7 @@ To lower the allocation number I tried to increase the `DATA_SIZE` so that one d
 
 There's stll a small block of memory space in use at exit according to valgrind report, and it is *[a known bug from GCC 5.1](https://gcc.gnu.org/bugzilla/show_bug.cgi?id=64535)*.
 
-I changed the `DATA_SIZE` to 1<<14 with the `TAB_SIZE` to `1<<12`, and found that the running time is almost the same (3.588s VS 3.584).
+I changed the `DATA_SIZE` to `1<<14` with the `TAB_SIZE` to `1<<12`, and found that the running time is almost the same (3.588s VS 3.584).
 
 I guess the time costs of overheads in allocation operations is fairly small compared with other operations such as push or pop.
 
