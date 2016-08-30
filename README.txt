@@ -6,8 +6,7 @@ B00671111
 
 # Some Notes
 
-#### Notes: I have altered the test.cpp adding a timer for timing, nothing else modified, so I zipped it inside my assignment.
-#### My archive includes: Makefile, test.cpp, Deque.hpp, README.md, README.txt
+#### My archive includes: Makefile, Deque.hpp, README.md, README.txt
 
 ------
 ### 2016-08-26
