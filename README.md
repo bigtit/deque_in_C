@@ -29,8 +29,10 @@ A possible way to solve not-enough-space problem:
 > * free the first or last data array when data is popped and bound checking returns true, update trace table and 4 indices.
 > * use odd and even indices in trace table to distinguish front and back arrays so that we can easily find them.
 > * Structure of `trace_table` indices:
+
 >  ...|--2n+1--|...|--7--|--5--|--3--|--1--|--0--|--2--|--4--|...|--2m--|...
-The diagram above shows the memory structure a user expects about the deque, the numbers inside indicate the indices of trace_table.
+
+> The diagram above shows the memory structure a user expects about the deque, the numbers inside indicate the indices of trace_table.
 
 Discard the `free` steps in `pop_front`, `pop_back` and `it_get` to reuse existed memory space, reducing redundant allocation operations.
 
@@ -43,6 +45,7 @@ The performance on a VirtualBox VM with 2GB ram and 1 core is not bad and the re
 To lower the allocation number I tried to increase the `DATA_SIZE` so that one data array could hold more user data to reduce the frequency of allocations, while the number of allocations influences the time costs of overheads in each allocation operation.
 
 *valgrind report*
+
 There's stll a small block of memory space in use at exit according to valgrind report, and it is *[a known bug from GCC 5.1](https://gcc.gnu.org/bugzilla/show_bug.cgi?id=64535)*.
 
 I changed the `DATA_SIZE` to 1<<14 with the `TAB_SIZE` to `1<<12`, and found that the running time is almost the same (3.588s VS 3.584).
