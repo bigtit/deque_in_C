@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-g3 -Wall -Wextra -pedantic
+CFLAGS=-std=c++11 -Wall -Wextra -pedantic
 LDLIBS=-ldl # dlsym
 DEPS=Deque.hpp
 OBJ=test.o

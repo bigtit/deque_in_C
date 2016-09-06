@@ -58,6 +58,10 @@ I guess the time costs of overheads in allocation operations is fairly small com
 
 ------
 
+Add implementation of clear().
+
+------
+
 **The result of diff my_output corrent_output:**
   108c108
   < 579 allocations totalling 128666200 bytes

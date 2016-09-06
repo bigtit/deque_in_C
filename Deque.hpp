@@ -118,8 +118,8 @@ void Deque_##T##_ctor(Deque_##T * c, less_func_##T lf) { \
   c->clear = Deque_##T##_clear; \
   c->dtor = Deque_##T##_dtor; \
 } \
-void Deque_##T##_clear(Deque_##T *) { \
-\
+void Deque_##T##_clear(Deque_##T * c) { \
+  c->_beg = c->_end = c->_begi = c->_endi =0;\
 } \
 \
 void Deque_##T##_dtor(Deque_##T * c) { \
