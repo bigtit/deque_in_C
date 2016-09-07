@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <stdio.h>
+#include <stdint.h>
 #include <random>
 #include <unistd.h>
 #include "Deque.hpp"
@@ -38,9 +39,10 @@ namespace {
     void
     alloc_init() {
         if (!initialized) {
-            default_malloc = (void*(*)(size_t)) dlsym(RTLD_NEXT, "malloc"); xyzzy_check(default_malloc != nullptr);
-            default_realloc = (void*(*)(void*,size_t)) dlsym(RTLD_NEXT, "realloc"); xyzzy_check(default_realloc != nullptr);
-            default_calloc = (void*(*)(size_t,size_t)) dlsym(RTLD_NEXT, "calloc"); xyzzy_check(default_calloc != nullptr);
+            // Cast through int to avoid warnings on some versions of g++.
+            default_malloc = (void*(*)(size_t)) (uintptr_t) dlsym(RTLD_NEXT, "malloc"); xyzzy_check(default_malloc != nullptr);
+            default_realloc = (void*(*)(void*,size_t)) (uintptr_t) dlsym(RTLD_NEXT, "realloc"); xyzzy_check(default_realloc != nullptr);
+            default_calloc = (void*(*)(size_t,size_t)) (uintptr_t) dlsym(RTLD_NEXT, "calloc"); xyzzy_check(default_calloc != nullptr);
             initialized = true;
         }
     }
@@ -356,7 +358,7 @@ main() {
             sum += deq.at(&deq, rand(0, deq.size(&deq) - 1)(e));
         }
         // Print it out to prevent optimizer from optimizing out the at() calls.
-        fprintf(devnull, "%zu", sum);
+        fprintf(devnull, "%lu", sum);
         printf("%d push_backs, %d push_fronts, %d pop_backs, %d pop_fronts, %d size\n", pb, pf, pob, pof, (int) deq.size(&deq));
         deq.dtor(&deq);
     }
@@ -375,12 +377,12 @@ main() {
        for(int i = lo; i < hi; i++) {
           sum += deq.at(&deq, i);
        }
-       printf("Sum of all integers between %d and %d calculated using a deque is %zu.\n", lo, hi, sum);
+       printf("Sum of all integers between %d and %d calculated using a deque is %lu.\n", lo, hi, sum);
        deq.dtor(&deq);
     }
 
    // Print allocation info
-   printf("%zd allocations totalling %zd bytes\n", alloc_call_count, total_bytes_allocated);
+   printf("%ld allocations totalling %ld bytes\n", alloc_call_count, total_bytes_allocated);
    int rv = fclose(devnull);
    assert(rv == 0);
 }
